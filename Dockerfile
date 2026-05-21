@@ -30,6 +30,7 @@ EXPOSE 80
 CMD php artisan config:cache && \
     php artisan route:cache && \
     php artisan view:cache && \
+    php artisan session:table 2>/dev/null || true && \
     php artisan migrate --force && \
     touch /var/www/html/storage/logs/laravel.log && \
     chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache && \
