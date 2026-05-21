@@ -18,3 +18,8 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__.'/auth.php';
+
+Route::get('/ldap-test', function () {
+    $user = \LdapRecord\Models\OpenLDAP\User::where('uid', 'teste da silva')->first();
+    dd($user);
+});
