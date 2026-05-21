@@ -12,9 +12,11 @@ RUN apt-get update && apt-get install -y \
     libzip-dev \
     libonig-dev \
     libicu-dev \
+    libldap2-dev \
     unzip \
     curl \
-    && docker-php-ext-install intl pdo_mysql zip mbstring exif pcntl bcmath
+    && docker-php-ext-configure ldap \
+    && docker-php-ext-install intl pdo_mysql zip mbstring exif pcntl bcmath ldap
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 WORKDIR /var/www/html
 COPY . .
