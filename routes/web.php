@@ -19,7 +19,8 @@ Route::middleware('auth')->group(function () {
 
 require __DIR__.'/auth.php';
 
+//testes
 Route::get('/ldap-test', function () {
-    $users = \LdapRecord\Models\OpenLDAP\User::all();
+    $users = \LdapRecord\Models\OpenLDAP\User::in('ou=people,dc=gerenciadoracessos,dc=local')->get();
     dd($users);
 });
