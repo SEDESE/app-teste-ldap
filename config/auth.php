@@ -40,10 +40,9 @@ return [
     'guards' => [
         'web' => [
             'driver' => 'session',
-            'provider' => 'users',
+            'provider' => 'ldap',
         ],
     ],
-
     /*
     |--------------------------------------------------------------------------
     | User Providers
@@ -62,10 +61,11 @@ return [
     */
 
     'providers' => [
-        'users' => [
-            'driver' => 'eloquent',
-            'model' => env('AUTH_MODEL', User::class),
+    'ldap' => [
+        'driver' => 'ldap',
+        'model' => LdapRecord\Models\OpenLDAP\User::class,
         ],
+    ],
 
         // 'users' => [
         //     'driver' => 'database',
