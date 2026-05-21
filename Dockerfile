@@ -15,12 +15,15 @@ RUN apt-get update && apt-get install -y \
     libldap2-dev \
     unzip \
     curl \
+    nodejs \
+    npm \
     && docker-php-ext-configure ldap \
     && docker-php-ext-install intl pdo_mysql zip mbstring exif pcntl bcmath ldap
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 WORKDIR /var/www/html
 COPY . .
 RUN composer install --no-dev --optimize-autoloader --no-interaction
+RUN npm install && npm run build && rm -rf node_modules
 RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache
 EXPOSE 80
 #aaa
