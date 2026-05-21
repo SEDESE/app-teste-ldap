@@ -20,7 +20,7 @@ Route::middleware('auth')->group(function () {
 require __DIR__.'/auth.php';
 
 //testes
-Route::get('/ldap-test', function () {
-    $users = \App\Ldap\User::get();
-    dd($users->toArray());
+Route::get('/ldap-test2', function () {
+    $user = \App\Ldap\User::where('mail', 'testedasilva@gmail.com')->first();
+    dd($user?->getAttributes());
 });
