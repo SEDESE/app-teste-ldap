@@ -27,8 +27,7 @@ RUN npm install && npm run build && rm -rf node_modules
 RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache
 EXPOSE 80
 #aaa
-CMD php artisan config:cache && \
-    php artisan route:cache && \
+CMD php artisan route:cache && \
     php artisan view:cache && \
     php artisan session:table 2>/dev/null || true && \
     php artisan migrate --force && \
